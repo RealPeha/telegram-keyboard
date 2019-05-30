@@ -1,0 +1,14 @@
+{
+  "name": "tlgrf_bot",
+  "version": "0.0.1",
+  "description": "Keyboard",
+  "main": "app.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Stas",
+  "license": "ISC",
+  "dependencies": {
+    "telegraf": "^3.21.2"
+  }
+}
