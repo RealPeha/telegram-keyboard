@@ -1,14 +1,33 @@
 {
-  "name": "tlgrf_bot",
-  "version": "0.0.1",
-  "description": "Keyboard",
-  "main": "app.js",
+  "name": "telegraf-keyboard",
+  "version": "1.0.1",
+  "description": "Keyboard builder for Telegraf",
+  "author": "Stas Kardash real.peha@gmail.com",
+  "main": "lib/keyboard.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Stas",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RealPeha/telegraf-keyboard"
+  },
+  "bugs": {
+    "url": "https://github.com/RealPeha/telegraf-keyboard/issues"
+  },
+  "homepage": "https://github.com/RealPeha/telegraf-keyboard#readme",
+  "engines": {
+    "node": ">=6.2.1"
+  },
+  "files": [
+    "lib/keyboard.js"
+  ],
+  "keywords": [
+    "telegraf",
+    "telegram",
+    "bot"
+  ],
   "dependencies": {
-    "telegraf": "^3.21.2"
+    "telegraf": "^3.29.0"
   }
 }
