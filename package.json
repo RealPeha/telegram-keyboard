@@ -1,12 +1,9 @@
 {
   "name": "telegraf-keyboard",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Keyboard builder for Telegraf",
   "author": "Stas Kardash real.peha@gmail.com",
-  "main": "lib/keyboard.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "main": "lib/index.js",
   "license": "ISC",
   "repository": {
     "type": "git",
@@ -17,17 +14,21 @@
   },
   "homepage": "https://github.com/RealPeha/telegraf-keyboard#readme",
   "engines": {
-    "node": ">=6.2.1"
+    "node": ">=10"
   },
   "files": [
-    "lib/keyboard.js"
+    "lib/*.js"
   ],
   "keywords": [
     "telegraf",
     "telegram",
-    "bot"
+    "bot",
+    "telegraf-keyboard",
+    "inline-keyboard",
+    "keyboard",
+    "keyboard-builder"
   ],
   "dependencies": {
-    "telegraf": "^3.29.0"
+    "telegraf": "^3.38.0"
   }
 }
