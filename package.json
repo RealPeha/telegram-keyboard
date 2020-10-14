@@ -1,6 +1,6 @@
 {
   "name": "telegraf-keyboard",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Keyboard builder for Telegraf",
   "author": "Stas Kardash real.peha@gmail.com",
   "main": "lib/index.js",
