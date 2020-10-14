@@ -23,11 +23,11 @@ const titleKeyboard = Keyboard.make(title)
 const dayKeyboard = Keyboard.make(days, { columns: title.length })
 
 const keyboard = Keyboard.combine(titleKeyboard, dayKeyboard)
-const inlineKeyboard = keyboard.clone().push(actions).inline()
+const inlineKeyboard = keyboard.clone().push(actions)
 
 bot.start(async ({ reply }) => {
-    await reply('Simple day selector. Build-in keyboard', keyboard.draw())
-    await reply('Simple day selector. Inline keyboard', inlineKeyboard.draw())
+    await reply('Simple day selector. Build-in keyboard', keyboard.builtIn())
+    await reply('Simple day selector. Inline keyboard', inlineKeyboard.inline())
 })
 
 bot.on('callback_query', async (ctx) => {
