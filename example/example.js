@@ -1,31 +1,47 @@
 const Telegraf = require('telegraf')
 
-const { Keyboard, Key, useKeyboard } = require('../lib')
+const { Keyboard, Key } = require('../lib')
+
+const { callback } = Key
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
+const ACTION_TYPES = {
+    day: 'day',
+    remove: 'remove'
+}
+
 const title = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-const days = [...Array(30)].map((_, i) => (i + 1).toString()) // 1 - 30
+const days = [...Array(30)].map((_, i) => {
+    const title = (i + 1).toString();
 
-const titleKeys = Keyboard.make(title)
-const dayKeys = Keyboard.make(days, { columns: title.length })
+    return callback(title, `${ACTION_TYPES.day}:${title}`)
+})
+const actions = [callback('Remove build-in keyboard', ACTION_TYPES.remove)]
 
-const keyboard = Keyboard.combine(titleKeys, dayKeys)
-keyboard.push(Key.callback('Remove build-in keyboard', 'remove'))
+const titleKeyboard = Keyboard.make(title)
+const dayKeyboard = Keyboard.make(days, { columns: title.length })
+
+const keyboard = Keyboard.combine(titleKeyboard, dayKeyboard)
+const inlineKeyboard = keyboard.clone().push(actions).inline()
 
 bot.start(async ({ reply }) => {
-    await reply('Simple day selector', keyboard.draw())
-    await reply('Simple day selector', keyboard.toInline().draw())
+    await reply('Simple day selector. Build-in keyboard', keyboard.draw())
+    await reply('Simple day selector. Inline keyboard', inlineKeyboard.draw())
 })
 
-bot.action('remove', async ({ answerCbQuery, reply }) => {
-    await reply('Removed', Keyboard.remove())
+bot.on('callback_query', async (ctx) => {
+    const [actionType, actionData] = ctx.callbackQuery.data.split(':')
 
-    return answerCbQuery()
-})
+    if (actionType === ACTION_TYPES.day) {
+        return ctx.answerCbQuery(actionData)
+    }
 
-bot.action(/.+/, ({ answerCbQuery, match }) => {
-    return answerCbQuery(match[0])
+    if (actionType === ACTION_TYPES.remove) {
+        await ctx.reply('Removed', Keyboard.remove())
+    }
+
+    return ctx.answerCbQuery()
 })
 
 bot.startPolling()
