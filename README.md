@@ -1,20 +1,20 @@
-# Telegraf Keyboard Builder
-Simple keyboard builder for Telegraf 
+# Telegram Keyboard Builder
+Simple keyboard builder for Telegram Bots
 
 ## Installation
 Just use npm
 
-    npm i telegraf-keyboard --save
+    npm i telegram-keyboard --save
     
 or yarn
 
-    yarn add telegraf-keyboard
+    yarn add telegram-keyboard
     
-## Example of use
+## Example of use in Telegraf
 
 ```javascript
 const Telegraf = require('telegraf')
-const { Keyboard } = require('telegraf-keyboard')
+const { Keyboard } = require('telegram-keyboard')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -29,4 +29,4 @@ bon.on('text', async ({ reply }) => {
 })
 ```
 
-More examples you may find in [example](https://github.com/RealPeha/telegraf-keyboard/tree/master/example)
+More examples you may find in [example](https://github.com/RealPeha/telegram-keyboard/tree/master/example)
