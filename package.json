@@ -1,5 +1,5 @@
 {
-  "name": "telegraf-keyboard",
+  "name": "telegram-keyboard",
   "version": "2.0.1",
   "description": "Keyboard builder for Telegram Bot",
   "author": "Stas Kardash real.peha@gmail.com",
