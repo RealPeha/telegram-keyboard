@@ -1,18 +1,18 @@
 {
   "name": "telegraf-keyboard",
-  "version": "2.0.0",
-  "description": "Keyboard builder for Telegraf",
+  "version": "2.0.1",
+  "description": "Keyboard builder for Telegram Bot",
   "author": "Stas Kardash real.peha@gmail.com",
   "main": "lib/index.js",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RealPeha/telegraf-keyboard"
+    "url": "https://github.com/RealPeha/telegram-keyboard"
   },
   "bugs": {
-    "url": "https://github.com/RealPeha/telegraf-keyboard/issues"
+    "url": "https://github.com/RealPeha/telegram-keyboard/issues"
   },
-  "homepage": "https://github.com/RealPeha/telegraf-keyboard#readme",
+  "homepage": "https://github.com/RealPeha/telegram-keyboard#readme",
   "engines": {
     "node": ">=10"
   },
@@ -20,15 +20,13 @@
     "lib/*.js"
   ],
   "keywords": [
-    "telegraf",
+    "telegram-bot-api",
     "telegram",
     "bot",
-    "telegraf-keyboard",
+    "bot-keyboard",
+    "telegram-keyboard",
     "inline-keyboard",
     "keyboard",
     "keyboard-builder"
-  ],
-  "dependencies": {
-    "telegraf": "^3.38.0"
-  }
+  ]
 }
