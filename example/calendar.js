@@ -13,7 +13,7 @@ const ACTION_TYPES = {
 
 const title = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 const days = [...Array(30)].map((_, i) => {
-    const title = (i + 1).toString();
+    const title = (i + 1).toString()
 
     return callback(title, `${ACTION_TYPES.day}:${title}`)
 })
