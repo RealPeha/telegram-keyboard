@@ -37,6 +37,9 @@ const { Keyboard } = require('telegram-keyboard')
 
 const keyboard = Keyboard.make(['Button 1', 'Button 2']).builtIn()
 
+// or using shortcut
+const keyboard = Keyboard.builtIn(['Button 1', 'Button 2'])
+
 console.log(keyboard)
 ```
 
@@ -63,6 +66,9 @@ console.log(keyboard)
 const { Keyboard } = require('telegram-keyboard')
 
 const keyboard = Keyboard.make(['Button 1', 'Button 2']).inline()
+
+// or using shortcut
+const keyboard = Keyboard.inline(['Button 1', 'Button 2'])
 
 console.log(keyboard)
 ```
