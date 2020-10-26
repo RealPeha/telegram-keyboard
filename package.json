@@ -27,6 +27,7 @@
     "telegram-keyboard",
     "inline-keyboard",
     "keyboard",
-    "keyboard-builder"
+    "keyboard-builder",
+    "telegraf-keyboard"
   ]
 }
