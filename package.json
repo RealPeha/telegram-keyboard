@@ -4,6 +4,9 @@
   "description": "Keyboard builder for Telegram Bot",
   "author": "Stas Kardash real.peha@gmail.com",
   "main": "lib/index.js",
+  "scripts": {
+    "test": "ava test/*"
+  },
   "license": "ISC",
   "repository": {
     "type": "git",
@@ -29,5 +32,8 @@
     "keyboard",
     "keyboard-builder",
     "telegraf-keyboard"
-  ]
+  ],
+  "devDependencies": {
+    "ava": "^3.13.0"
+  }
 }
