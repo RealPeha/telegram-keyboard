@@ -24,8 +24,8 @@ bon.on('text', async ({ reply }) => {
     ['Button 3', 'Button 4'], // Second row
   ])
 
-  await ctx.reply('Simple built-in keyboard', keyboard.reply())
-  await ctx.reply('Simple inline keyboard', keyboard.inline())
+  await reply('Simple built-in keyboard', keyboard.reply())
+  await reply('Simple inline keyboard', keyboard.inline())
 })
 ```
 
