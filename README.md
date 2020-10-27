@@ -1,5 +1,5 @@
 # Telegram Keyboard Builder
-Simple and powerful keyboard builder for Telegram Bots
+Simple and powerful reply and inline keyboard builder for Telegram Bots
 
 ## Installation
 Just use npm
