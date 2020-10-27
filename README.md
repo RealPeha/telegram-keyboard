@@ -24,21 +24,21 @@ bon.on('text', async ({ reply }) => {
     ['Button 3', 'Button 4'], // Second row
   ])
 
-  await ctx.reply('Simple built-in keyboard', keyboard.builtIn())
+  await ctx.reply('Simple built-in keyboard', keyboard.reply())
   await ctx.reply('Simple inline keyboard', keyboard.inline())
 })
 ```
 
-## Built-in keyboard
+## Reply (build-in) keyboard
 
 #### Example
 ```javascript
 const { Keyboard } = require('telegram-keyboard')
 
-const keyboard = Keyboard.make(['Button 1', 'Button 2']).builtIn()
+const keyboard = Keyboard.make(['Button 1', 'Button 2']).reply()
 
 // or using shortcut
-const keyboard = Keyboard.builtIn(['Button 1', 'Button 2'])
+const keyboard = Keyboard.reply(['Button 1', 'Button 2'])
 
 console.log(keyboard)
 ```
@@ -136,7 +136,7 @@ console.log(keyboard)
 ```javascript
 const { Keyboard } = require('telegram-keyboard')
 
-const keyboard = Keyboard.make(['1', '2', '3', '4', '5'], { columns: 2 }).builtIn()
+const keyboard = Keyboard.make(['1', '2', '3', '4', '5'], { columns: 2 }).reply()
 
 console.log(keyboard)
 ```
@@ -164,7 +164,7 @@ const { Keyboard } = require('telegram-keyboard')
 
 const keyboard = Keyboard.make(['1', '2', '3', '4', '5'], {
   wrap: (row, index, button) => Math.random() > 0.5
-}).builtIn()
+}).reply()
 
 console.log(keyboard)
 ```
@@ -194,7 +194,7 @@ const { Keyboard } = require('telegram-keyboard')
 const keyboard1 = Keyboard.make(['1', '2', '3', '4'], { columns: 2 })
 const keyboard2 = Keyboard.make(['5', '6', '7', '8'])
 
-const keyboard = Keyboard.combine(keyboard1, keyboard2).builtIn()
+const keyboard = Keyboard.combine(keyboard1, keyboard2).reply()
 
 console.log(keyboard)
 ```

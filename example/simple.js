@@ -8,14 +8,14 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 const mainMenuKeyboard = Keyboard.make([
     ['Main menu', 'Inline Menu'],
     ['Help'],
-]).builtIn()
+]).reply()
 
 bot.start(({ reply }) => {
     return reply('Simple Keyboard', mainMenuKeyboard)
 })
 
 bot.hears('Main menu', ({ reply }) => {
-    return reply('Main menu', Keyboard.make(['Back']).builtIn())
+    return reply('Main menu', Keyboard.make(['Back']).reply())
 })
 
 bot.hears('Back', ({ reply }) => {
@@ -23,7 +23,7 @@ bot.hears('Back', ({ reply }) => {
 })
 
 bot.hears('Help', ({ reply }) => {
-    return reply('Help', Keyboard.make(['Back']).builtIn())
+    return reply('Help', Keyboard.make(['Back']).reply())
 })
 
 bot.hears('Inline Menu', ({ reply }) => {
