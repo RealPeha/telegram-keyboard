@@ -26,7 +26,7 @@ bot.hears('2 columns', ({ reply }) => {
 
 bot.hears('random', ({ reply }) => {
     const buttons = [1, 2, 3, 4, 5, 6, 7]
-    const keyboard = make([1, 2, 3, 4, 5, 6, 7], {
+    const keyboard = make(buttons, {
         wrap: row => row.length > Math.floor(Math.random() * buttons.length)
     })
 
