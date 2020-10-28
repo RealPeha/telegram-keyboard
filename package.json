@@ -35,5 +35,8 @@
   ],
   "devDependencies": {
     "ava": "^3.13.0"
+  },
+  "dependencies": {
+    "telegraf": "^3.38.0"
   }
 }
