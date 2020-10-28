@@ -1,5 +1,5 @@
 const Telegraf = require('telegraf')
-const { Keyboard } = require('../lib')
+const { Keyboard } = require('telegram-keyboard')
 
 // builtIn is the alias for reply, so Keyboard.builtIn() === Keyboard.reply()
 const { make, combine, builtIn } = Keyboard

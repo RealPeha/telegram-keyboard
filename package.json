@@ -37,6 +37,7 @@
     "ava": "^3.13.0"
   },
   "dependencies": {
+    "node-fetch": "^2.6.1",
     "telegraf": "^3.38.0"
   }
 }
