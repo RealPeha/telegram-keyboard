@@ -136,7 +136,9 @@ console.log(keyboard)
 ```javascript
 const { Keyboard } = require('telegram-keyboard')
 
-const keyboard = Keyboard.make(['1', '2', '3', '4', '5'], { columns: 2 }).reply()
+const keyboard = Keyboard.make(['1', '2', '3', '4', '5'], {
+  columns: 2,
+}).reply()
 
 console.log(keyboard)
 ```
@@ -191,7 +193,9 @@ console.log(keyboard)
 ```javascript
 const { Keyboard } = require('telegram-keyboard')
 
-const keyboard1 = Keyboard.make(['1', '2', '3', '4'], { columns: 2 })
+const keyboard1 = Keyboard.make(['1', '2', '3', '4'], {
+  columns: 2
+})
 const keyboard2 = Keyboard.make(['5', '6', '7', '8'])
 
 const keyboard = Keyboard.combine(keyboard1, keyboard2).reply()
