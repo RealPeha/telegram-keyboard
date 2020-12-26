@@ -29,7 +29,7 @@ bot.start(ctx => {
     return ctx.reply('Keyboard', keyboard.construct(ctx.session.page).inline())
 })
 
-bot.on('callback_query', async (ctx) => {
+bot.on('callback_query', (ctx) => {
     const arrow = ctx.callbackQuery.data
 
     if (arrow === 'right') {
@@ -40,12 +40,10 @@ bot.on('callback_query', async (ctx) => {
         return ctx.answerCbQuery()
     }
 
-    const page = ctx.session.page
-
-    await ctx.editMessageText('Keyboard', keyboard.construct(page).inline())
-        .catch(() => 42)
-
-    return ctx.answerCbQuery()
+    return Promise.all([
+        ctx.editMessageText('Keyboard', keyboard.construct(ctx.session.page).inline()),
+        ctx.answerCbQuery(),
+    ]).catch(() => 42)
 })
 
 bot.launch()
