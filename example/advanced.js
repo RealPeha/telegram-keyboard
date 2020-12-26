@@ -41,4 +41,4 @@ bot.hears('pyramid', ({ reply }) => {
     return reply('pyramid', combine(keyboard, backKeyboard).builtIn())
 })
 
-bot.startPolling()
+bot.launch()

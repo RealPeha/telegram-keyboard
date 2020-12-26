@@ -218,4 +218,44 @@ console.log(keyboard)
 ```
 ![](./imgs/combine-keyboards.png)
 
+## Construct keyboard
+
+#### Example
+
+Full example in [example/pagination.js](https://github.com/RealPeha/telegram-keyboard/tree/master/example/pagination.js)
+
+Instead of writing a separate function to create the keyboard like this:
+
+```javascript
+const createKeyboard = page => {
+  return Keyboard
+    .make(/* ... */)
+}
+```
+
+You can pass function to Keyboard.make method. The function can return either an array of buttons or another keyboard.
+After that with the keyboard.construct(someArgs) method you can recreate it
+
+```javascript
+const { Keyboard } = require('telegram-keyboard')
+
+const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const itemsPerPage = 4
+
+const keyboard = Keyboard.make((page) => {
+    return Keyboard
+        .make(items.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage), {
+            columns: 3,
+        })
+        .combine(Keyboard.make([
+            Key.callback('<----', 'left', page === 0),
+            Key.callback('---->', 'right', page === 2),
+        ]))
+})
+
+// remake keyboard with some other arguments
+keyboard.construct(0)
+keyboard.construct(1)
+```
+
 More examples you may find in [example](https://github.com/RealPeha/telegram-keyboard/tree/master/example)

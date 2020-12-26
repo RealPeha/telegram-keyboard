@@ -44,4 +44,4 @@ bot.on('callback_query', async (ctx) => {
     return ctx.answerCbQuery()
 })
 
-bot.startPolling()
+bot.launch()

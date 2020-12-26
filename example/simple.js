@@ -40,4 +40,4 @@ bot.on('callback_query', (ctx) => {
     return ctx.answerCbQuery(ctx.callbackQuery.data)
 })
 
-bot.startPolling()
+bot.launch()
