@@ -222,7 +222,7 @@ console.log(keyboard)
 
 #### Example
 
-Full example in [example/pagination.js](https://github.com/RealPeha/telegram-keyboard/tree/master/example/pagination.js)
+Full example in [examples/pagination.js](https://github.com/RealPeha/telegram-keyboard/tree/master/examples/pagination.js)
 
 Instead of writing a separate function to create the keyboard like this:
 
@@ -258,4 +258,4 @@ keyboard.construct(0)
 keyboard.construct(1)
 ```
 
-More examples you may find in [example](https://github.com/RealPeha/telegram-keyboard/tree/master/example)
+More examples you may find in [examples](https://github.com/RealPeha/telegram-keyboard/tree/master/examples)
