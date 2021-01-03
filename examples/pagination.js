@@ -40,10 +40,8 @@ bot.on('callback_query', (ctx) => {
         return ctx.answerCbQuery()
     }
 
-    return Promise.all([
-        ctx.editMessageText('Keyboard', keyboard.construct(ctx.session.page).inline()),
-        ctx.answerCbQuery(),
-    ]).catch(() => 42)
+    return ctx.editMessageText('Keyboard', keyboard.construct(ctx.session.page).inline())
+        .catch(() => 42)
 })
 
 bot.launch()
