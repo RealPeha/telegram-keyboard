@@ -57,7 +57,7 @@ export declare class Keyboard {
     clone(): this
 
     /**
-     * @description Removes all buttons from the keyboard
+     * @description Removes all buttons and options from the keyboard
      * @example
      * const keyboard = Keyboard.make(['Button'])
      * keyboard.reset()
@@ -130,7 +130,7 @@ export declare class Keyboard {
     /**
      * @description Merge two or more keyboards into one
      * @example
-     * const keyboard1 = Keyboard.make(['Button 1'])
+     * const keyboard1 = Keyboard.make(['Button 1', 'Button 2', 'Button 3', 'Button 4'], { columns: 2 })
      * const keyboard2 = Keyboard.make(['Button 2'])
      * const keyboard = Keyboard.combine(keyboard1, keyboard2)
      */
@@ -140,36 +140,48 @@ export declare class Keyboard {
 
     make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): this
 
-    /** Return inline keyboard markup */
+    /** Returns inline keyboard markup */
     inline(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraInline
 
-    /** Return reply keyboard markup */
+    /** Returns reply keyboard markup */
     reply(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
 
     /** Alias for `reply` method */
     builtIn(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
 
+    /** Returns number of rows */
     get length(): number
 
+    /** Remove reply keyboard */
     static remove(): { reply_markup: ReplyKeyboardRemove }
+
+    /**
+     * @description Make a copy of the Keyboard instance
+     * @example
+     * const keyboard = Keyboard.make(['Button'])
+     * const clone = keyboard.clone()
+     * 
+     * console.log(keyboard !== clone)
+     * console.log(keyboard.buttons !== clone.buttons)
+     */
     static clone(): Keyboard
 
     /**
      * @description Merge two or more keyboards into one
      * @example
-     * const keyboard1 = Keyboard.make(['Button 1'])
+     * const keyboard1 = Keyboard.make(['Button 1', 'Button 2', 'Button 3', 'Button 4'], { columns: 2 })
      * const keyboard2 = Keyboard.make(['Button 2'])
      * const keyboard = Keyboard.combine(keyboard1, keyboard2)
      */
     static combine(...keyboards: Keyboard[]): Keyboard
     static make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): Keyboard
 
-    /** Return inline keyboard markup */
-    static inline(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraInline
+    /** Returns inline keyboard markup */
+    static inline(buttons: Buttons, makeOptions?: MakeOptions, extra?: Omit<ExtraInline, 'reply_markup'>): ExtraInline
 
-    /** Return reply keyboard markup */
-    static reply(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
+    /** Returns reply keyboard markup */
+    static reply(buttons: Buttons, makeOptions?: MakeOptions, extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
 
     /** Alias for `Keyboard.reply` method */
-    static builtIn(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
+    static builtIn(buttons: Buttons, makeOptions?: MakeOptions, extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
 }
