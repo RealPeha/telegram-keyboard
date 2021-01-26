@@ -1,8 +1,5 @@
 const Telegraf = require('telegraf')
-
-const { Keyboard, Key } = require('../lib')
-
-const { callback } = Key
+const { Keyboard, Key } = require('../../lib')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -13,17 +10,17 @@ const ACTION_TYPES = {
 
 const title = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 const days = [...Array(30)].map((_, i) => {
-    const title = (i + 1).toString()
+    const day = (i + 1).toString()
 
-    return callback(title, `${ACTION_TYPES.day}:${title}`)
+    return Key.callback(day, `${ACTION_TYPES.day}:${day}`)
 })
-const actions = [callback('Remove build-in keyboard', ACTION_TYPES.remove)]
 
 const titleKeyboard = Keyboard.make(title)
 const dayKeyboard = Keyboard.make(days, { columns: title.length })
-
 const keyboard = Keyboard.combine(titleKeyboard, dayKeyboard)
-const inlineKeyboard = keyboard.clone().push(actions)
+
+const actionsKeyboard = Keyboard.make([Key.callback('Remove build-in keyboard', ACTION_TYPES.remove)])
+const inlineKeyboard = Keyboard.combine(keyboard, actionsKeyboard)
 
 bot.start(async ({ reply }) => {
     await reply('Simple day selector. Build-in keyboard', keyboard.builtIn())

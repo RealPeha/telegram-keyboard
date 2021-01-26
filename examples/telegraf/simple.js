@@ -1,7 +1,5 @@
-const Telegraf = require('telegraf')
-const { Keyboard, Key } = require('telegram-keyboard')
-
-const { callback } = Key
+const { Telegraf } = require('telegraf')
+const { Keyboard, Key } = require('../../lib')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -28,9 +26,9 @@ bot.hears('Help', ({ reply }) => {
 
 bot.hears('Inline Menu', ({ reply }) => {
     const keyboard = Keyboard.make([
-        [callback('Line 1', 'hello')],
-        [callback('Line 2', 'my')],
-        [callback('Line 3', 'friend')],
+        [Key.callback('Line 1', 'hello')],
+        [Key.callback('Line 2', 'my')],
+        [Key.callback('Line 3', 'friend')],
     ]).inline()
 
     return reply('Inline Keyboard', keyboard)

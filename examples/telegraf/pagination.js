@@ -1,5 +1,5 @@
 const { Telegraf, session } = require('telegraf')
-const { Keyboard, Key } = require('telegram-keyboard')
+const { Keyboard, Key } = require('../../lib')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
