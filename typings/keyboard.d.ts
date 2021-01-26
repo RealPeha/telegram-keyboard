@@ -1,5 +1,6 @@
 import { KeyboardButton } from './key.d'
-import { ExtraReplyMessage, ExtraGame, ExtraInvoice, ExtraPoll, ReplyKeyboardRemove } from 'telegraf/typings/telegram-types'
+import { InlineKeyboardMarkup } from 'typegram/inline'
+import { ReplyKeyboardMarkup, ReplyKeyboardRemove } from 'typegram/callback'
 
 interface ExtraMarkup {
     resize_keyboard?: boolean
@@ -31,9 +32,6 @@ export type Buttons =
   | string[] | string[][]
   | number[] | number[][]
   | KeyboardButton[] | KeyboardButton[][]
-
-type ExtraReply = ExtraReplyMessage | ExtraPoll
-type ExtraInline = ExtraReplyMessage | ExtraGame | ExtraInvoice | ExtraPoll
 
 type MakeFunction = (...args: any[]) => Keyboard | Buttons
 
@@ -141,13 +139,13 @@ export declare class Keyboard {
     make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): this
 
     /** Returns inline keyboard markup */
-    inline(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraInline
+    inline(extra?: Record<string, any>): { reply_markup: InlineKeyboardMarkup }
 
     /** Returns reply keyboard markup */
-    reply(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
+    reply(extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 
     /** Alias for `reply` method */
-    builtIn(extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
+    builtIn(extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 
     /** Returns number of rows */
     get length(): number
@@ -177,11 +175,11 @@ export declare class Keyboard {
     static make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): Keyboard
 
     /** Returns inline keyboard markup */
-    static inline(buttons: Buttons, makeOptions?: MakeOptions, extra?: Omit<ExtraInline, 'reply_markup'>): ExtraInline
+    static inline(buttons: Buttons, makeOptions?: MakeOptions, extra?: Record<string, any>): { reply_markup: InlineKeyboardMarkup }
 
     /** Returns reply keyboard markup */
-    static reply(buttons: Buttons, makeOptions?: MakeOptions, extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
+    static reply(buttons: Buttons, makeOptions?: MakeOptions, extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 
     /** Alias for `Keyboard.reply` method */
-    static builtIn(buttons: Buttons, makeOptions?: MakeOptions, extra?: Omit<ExtraInline, 'reply_markup'>): ExtraReply
+    static builtIn(buttons: Buttons, makeOptions?: MakeOptions, extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 }
