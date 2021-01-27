@@ -62,15 +62,6 @@ export declare class Keyboard {
      */
     reset(): this
 
-    /** Push new row */
-    push(...buttons: Buttons): this
-
-    /** Pop last row */
-    pop(): string | number | KeyboardButton
-
-    /** Splice rows */
-    splice(): string[] | number[] | KeyboardButton[]
-
     setButtons(buttons: Buttons): this
 
     setOptions(options: ExtraMarkup): this

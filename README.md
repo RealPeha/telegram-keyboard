@@ -187,6 +187,125 @@ console.log(keyboard)
 ```
 ![](./imgs/calculated-columns-keyboard-2.png) ![](./imgs/calculated-columns-keyboard-1.png)
 
+## Pattern
+
+#### Example
+
+In this example `pattern: [3, 1, 1]` means that the first row will have 3 buttons, the second - 1, the third - 1 and all the other buttons in the last row
+```javascript
+const { Keyboard } = require('telegram-keyboard')
+
+const keyboard = Keyboard.make([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {
+    pattern: [3, 1, 1]
+}).reply()
+
+console.log(keyboard)
+```
+
+#### Result
+```JSON
+{
+  "reply_markup": {
+    "resize_keyboard": true,
+    "keyboard": [
+      ["1", "2", "3"],
+      ["4"],
+      ["5"],
+      ["6", "7", "8", "9", "10"]
+    ]
+  }
+}
+```
+
+## Custom filter function
+
+Default filter function is `button => !button.hide` but you can pass your filtering function 
+#### Example
+```javascript
+const { Keyboard } = require('telegram-keyboard')
+
+const keyboard = Keyboard.make([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {
+    columns: 2,
+    filter: btn => btn % 2
+}).reply()
+
+console.log(keyboard)
+```
+
+#### Result
+```JSON
+{
+  "reply_markup": {
+    "resize_keyboard": true,
+    "keyboard": [
+      ["1", "3"],
+      ["5", "7"],
+      ["9"]
+    ]
+  }
+}
+```
+
+## Filter after build
+
+#### Example
+```javascript
+const { Keyboard } = require('telegram-keyboard')
+
+const keyboard = Keyboard.make([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {
+    columns: 2,
+    filter: btn => btn % 2,
+    filterAfterBuild: true
+}).reply()
+
+console.log(keyboard)
+```
+
+#### Result
+```JSON
+{
+  "reply_markup": {
+    "resize_keyboard": true,
+    "keyboard": [
+      ["1"],
+      ["3"],
+      ["5"],
+      ["7"],
+      ["9"]
+    ]
+  }
+}
+```
+
+## Flat buttons
+
+#### Example
+```javascript
+const { Keyboard } = require('telegram-keyboard')
+
+const keyboard = Keyboard.make([[1, 2], [3, 4, 5, 6], [7, 8, 9, 10]], {
+    flat: true,
+    columns: 3,
+}).reply()
+
+console.log(keyboard)
+```
+
+#### Result
+```JSON
+{
+  "reply_markup": {
+    "resize_keyboard": true,
+    "keyboard": [
+      ["1", "2", "3"],
+      ["4", "5", "6"],
+      ["7", "8", "9"],
+      [ "10"]
+    ]
+  }
+}
+```
+
 ## Combine keyboards
 
 #### Example
