@@ -222,7 +222,7 @@ console.log(keyboard)
 
 #### Example
 
-Full example in [examples/pagination.js](https://github.com/RealPeha/telegram-keyboard/tree/master/examples/pagination.js)
+Full example in [examples/pagination.js](https://github.com/RealPeha/telegram-keyboard/tree/master/examples/telegraf/pagination.js)
 
 Instead of writing a separate function to create the keyboard like this:
 
@@ -243,19 +243,20 @@ const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const itemsPerPage = 4
 
 const keyboard = Keyboard.make((page) => {
-    return Keyboard
-        .make(items.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage), {
-            columns: 3,
-        })
-        .combine(Keyboard.make([
+    const pageItems = items.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage)
+    
+    return Keyboard.combine(
+        Keyboard.make(pageItems, { columns: 3 }),
+        Keyboard.make([
             Key.callback('<----', 'left', page === 0),
             Key.callback('---->', 'right', page === 2),
-        ]))
+        ])
+    )
 })
 
 // remake keyboard with some other arguments
-keyboard.construct(0)
-keyboard.construct(1)
+console.log(keyboard.construct(0).reply())
+console.log(keyboard.construct(1).reply())
 ```
 
 More examples you may find in [examples](https://github.com/RealPeha/telegram-keyboard/tree/master/examples)
