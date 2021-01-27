@@ -233,7 +233,7 @@ const createKeyboard = page => {
 }
 ```
 
-You can pass function to Keyboard.make method. The function can return either an array of buttons or another keyboard.
+You can pass function to Keyboard.make method. The function must return either an array of buttons or another keyboard.
 After that with the keyboard.construct(someArgs) method you can recreate it
 
 ```javascript
