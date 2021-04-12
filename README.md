@@ -1,3 +1,5 @@
+This is a fork. If you looking for official package visit [RealPeha/telegram-keyboard](https://github.com/RealPeha/telegram-keyboard)
+
 # Telegram Keyboard Builder
 Simple and powerful reply and inline keyboard builder for Telegram Bots
 
