@@ -2,7 +2,7 @@ import { KeyboardButton } from './key.d'
 import { InlineKeyboardMarkup } from 'typegram/inline'
 import { ReplyKeyboardMarkup, ReplyKeyboardRemove } from 'typegram/callback'
 
-interface ExtraMarkup {
+export interface ExtraMarkup {
     resize_keyboard?: boolean
     force_reply?: boolean
     selective?: boolean
@@ -10,7 +10,7 @@ interface ExtraMarkup {
     remove_keyboard?: boolean
 }
 
-interface MakeOptions {
+export interface MakeOptions {
     columns: number
     wrap: (
         row: string[] | number[] | KeyboardButton[],
@@ -33,7 +33,7 @@ export type Buttons =
   | number[] | number[][]
   | KeyboardButton[] | KeyboardButton[][]
 
-type MakeFunction = (...args: any[]) => Keyboard | Buttons
+export type MakeFunction = (...args: any[]) => Keyboard | Buttons
 
 export declare class Keyboard {
     markupOptions: ExtraMarkup
@@ -144,16 +144,7 @@ export declare class Keyboard {
     /** Remove reply keyboard */
     static remove(): { reply_markup: ReplyKeyboardRemove }
 
-    /**
-     * @description Make a copy of the Keyboard instance
-     * @example
-     * const keyboard = Keyboard.make(['Button'])
-     * const clone = keyboard.clone()
-     * 
-     * console.log(keyboard !== clone)
-     * console.log(keyboard.buttons !== clone.buttons)
-     */
-    static clone(): Keyboard
+    static make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): Keyboard
 
     /**
      * @description Merge two or more keyboards into one
@@ -162,8 +153,18 @@ export declare class Keyboard {
      * const keyboard2 = Keyboard.make(['Button 2'])
      * const keyboard = Keyboard.combine(keyboard1, keyboard2)
      */
-    static combine(...keyboards: Keyboard[]): Keyboard
-    static make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): Keyboard
+     static combine(...keyboards: Keyboard[]): Keyboard
+
+    /**
+     * @description Make a copy of the Keyboard instance
+     * @example
+     * const keyboard = Keyboard.make(['Button'])
+     * const clone = Keyboard.clone(keyboard)
+     * 
+     * console.log(keyboard !== clone)
+     * console.log(keyboard.buttons !== clone.buttons)
+     */
+    static clone(keyboard: Keyboard): Keyboard
 
     /** Returns inline keyboard markup */
     static inline(buttons: Buttons, makeOptions?: MakeOptions, extra?: Record<string, any>): { reply_markup: InlineKeyboardMarkup }
