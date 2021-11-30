@@ -193,9 +193,27 @@ test('make keyboard with empty buttons', t => {
 test('make remove keyboard', t => {
     const markup = Keyboard.remove().reply_markup
 
-    const result = {
+    t.deepEqual(markup, {
         remove_keyboard: true,
-    }
+    })
+})
 
-    t.deepEqual(markup, result)
+test('make keyboard with input field placeholder', t => {
+    const withPlaceholder = Keyboard.make([]).inputPlaceholder('Hello').reply().reply_markup
+
+    t.deepEqual(withPlaceholder, {
+        resize_keyboard: true,
+        input_field_placeholder: 'Hello'
+    })
+
+    const withoutPlaceHolder = Keyboard.make([])
+        .inputPlaceholder('Hello')
+        .inputPlaceholder()
+        .reply().reply_markup
+
+    t.deepEqual(withoutPlaceHolder, {
+        resize_keyboard: true,
+    })
+
+    t.throws(() => Keyboard.make([]).inputPlaceholder('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod'))
 })

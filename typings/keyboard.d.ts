@@ -3,29 +3,30 @@ import { InlineKeyboardMarkup } from 'typegram/inline'
 import { ReplyKeyboardMarkup, ReplyKeyboardRemove } from 'typegram/callback'
 
 export interface ExtraMarkup {
-    resize_keyboard?: boolean
-    force_reply?: boolean
-    selective?: boolean
-    one_time_keyboard?: boolean
-    remove_keyboard?: boolean
+    resize_keyboard?: boolean;
+    force_reply?: boolean;
+    selective?: boolean;
+    one_time_keyboard?: boolean;
+    remove_keyboard?: boolean;
+    input_field_placeholder?: string;
 }
 
 export interface MakeOptions {
-    columns: number
+    columns: number;
     wrap: (
         row: string[] | number[] | KeyboardButton[],
         index: number,
         rowIndex: number,
         button: number | string | KeyboardButton,
-    ) => boolean
+    ) => boolean;
     filter: (
         button: number | string | KeyboardButton,
         index: number,
         buttons: string[] | number[] | KeyboardButton[],
-    ) => boolean
-    filterAfterBuild: boolean
-    flat: boolean
-    pattern: number[]
+    ) => boolean;
+    filterAfterBuild: boolean;
+    flat: boolean;
+    pattern: number[];
 }
 
 export type Buttons =
@@ -38,7 +39,7 @@ export type MakeFunction = (...args: any[]) => Keyboard | Buttons
 export declare class Keyboard {
     markupOptions: ExtraMarkup
     buttons: Buttons
-    makeFunction: null | MakeFunction
+    makeFunction: MakeFunction | null
     makeOptions: MakeOptions
 
     constructor(buttons?: Buttons, markupOptions?: ExtraMarkup)
@@ -66,7 +67,7 @@ export declare class Keyboard {
 
     setOptions(options: ExtraMarkup): this
 
-    option(option: keyof ExtraMarkup, value?: boolean): this
+    setOption(option: keyof ExtraMarkup, value?: boolean | string): this
 
     /**
      * @description Requests clients to resize the keyboard vertically for optimal
@@ -104,6 +105,14 @@ export declare class Keyboard {
      * Keyboard.make(['Button']).oneTime().reply()
      */
     oneTime(value?: boolean): this
+
+    /**
+     * @description The placeholder to be shown in the input field when the
+     * keyboard is active; 1-64 characters
+     * @example
+     * Keyboard.make(['Button']).inputPlaceholder('Hello').reply()
+     */
+    inputPlaceholder(placeholder?: string): this
 
     /**
      * @description Requests clients to remove the custom keyboard (user will not
