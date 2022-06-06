@@ -23,7 +23,7 @@ const actionsKeyboard = Keyboard.make([Key.callback('Remove build-in keyboard', 
 const inlineKeyboard = Keyboard.combine(keyboard, actionsKeyboard)
 
 bot.start(async ({ reply }) => {
-    await reply('Simple day selector. Build-in keyboard', keyboard.builtIn())
+    await reply('Simple day selector. Build-in keyboard', keyboard.reply())
     await reply('Simple day selector. Inline keyboard', inlineKeyboard.inline())
 })
 

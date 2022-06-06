@@ -144,7 +144,10 @@ export declare class Keyboard {
     /** Returns reply keyboard markup */
     reply(extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 
-    /** Alias for `reply` method */
+    /**
+     * Alias for `reply` method
+     * @deprecated use `reply` instead
+     */
     builtIn(extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 
     /** Returns number of rows */
@@ -181,6 +184,9 @@ export declare class Keyboard {
     /** Returns reply keyboard markup */
     static reply(buttons: Buttons, makeOptions?: MakeOptions, extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 
-    /** Alias for `Keyboard.reply` method */
+    /**
+     * Alias for `Keyboard.reply` method
+     * @deprecated use `reply` instead
+     */
     static builtIn(buttons: Buttons, makeOptions?: MakeOptions, extra?: Record<string, any>): { reply_markup: ReplyKeyboardMarkup }
 }
