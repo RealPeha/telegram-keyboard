@@ -2,30 +2,31 @@ import { KeyboardButton } from './key.d'
 import { InlineKeyboardMarkup } from 'typegram/inline'
 import { ReplyKeyboardMarkup, ReplyKeyboardRemove } from 'typegram/callback'
 
-interface ExtraMarkup {
-    resize_keyboard?: boolean
-    force_reply?: boolean
-    selective?: boolean
-    one_time_keyboard?: boolean
-    remove_keyboard?: boolean
+export interface ExtraMarkup {
+    resize_keyboard?: boolean;
+    force_reply?: boolean;
+    selective?: boolean;
+    one_time_keyboard?: boolean;
+    remove_keyboard?: boolean;
+    input_field_placeholder?: string;
 }
 
-interface MakeOptions {
-    columns: number
+export interface MakeOptions {
+    columns: number;
     wrap: (
         row: string[] | number[] | KeyboardButton[],
         index: number,
         rowIndex: number,
         button: number | string | KeyboardButton,
-    ) => boolean
+    ) => boolean;
     filter: (
         button: number | string | KeyboardButton,
         index: number,
         buttons: string[] | number[] | KeyboardButton[],
-    ) => boolean
-    filterAfterBuild: boolean
-    flat: boolean
-    pattern: number[]
+    ) => boolean;
+    filterAfterBuild: boolean;
+    flat: boolean;
+    pattern: number[];
 }
 
 export type Buttons =
@@ -33,12 +34,12 @@ export type Buttons =
   | number[] | number[][]
   | KeyboardButton[] | KeyboardButton[][]
 
-type MakeFunction = (...args: any[]) => Keyboard | Buttons
+export type MakeFunction = (...args: any[]) => Keyboard | Buttons
 
 export declare class Keyboard {
     markupOptions: ExtraMarkup
     buttons: Buttons
-    makeFunction: null | MakeFunction
+    makeFunction: MakeFunction | null
     makeOptions: MakeOptions
 
     constructor(buttons?: Buttons, markupOptions?: ExtraMarkup)
@@ -66,7 +67,7 @@ export declare class Keyboard {
 
     setOptions(options: ExtraMarkup): this
 
-    option(option: keyof ExtraMarkup, value?: boolean): this
+    setOption(option: keyof ExtraMarkup, value?: boolean | string): this
 
     /**
      * @description Requests clients to resize the keyboard vertically for optimal
@@ -104,6 +105,14 @@ export declare class Keyboard {
      * Keyboard.make(['Button']).oneTime().reply()
      */
     oneTime(value?: boolean): this
+
+    /**
+     * @description The placeholder to be shown in the input field when the
+     * keyboard is active; 1-64 characters
+     * @example
+     * Keyboard.make(['Button']).inputPlaceholder('Hello').reply()
+     */
+    inputPlaceholder(placeholder?: string): this
 
     /**
      * @description Requests clients to remove the custom keyboard (user will not
@@ -144,16 +153,7 @@ export declare class Keyboard {
     /** Remove reply keyboard */
     static remove(): { reply_markup: ReplyKeyboardRemove }
 
-    /**
-     * @description Make a copy of the Keyboard instance
-     * @example
-     * const keyboard = Keyboard.make(['Button'])
-     * const clone = keyboard.clone()
-     * 
-     * console.log(keyboard !== clone)
-     * console.log(keyboard.buttons !== clone.buttons)
-     */
-    static clone(): Keyboard
+    static make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): Keyboard
 
     /**
      * @description Merge two or more keyboards into one
@@ -162,8 +162,18 @@ export declare class Keyboard {
      * const keyboard2 = Keyboard.make(['Button 2'])
      * const keyboard = Keyboard.combine(keyboard1, keyboard2)
      */
-    static combine(...keyboards: Keyboard[]): Keyboard
-    static make(buttons: Buttons | MakeFunction, makeOptions?: MakeOptions): Keyboard
+     static combine(...keyboards: Keyboard[]): Keyboard
+
+    /**
+     * @description Make a copy of the Keyboard instance
+     * @example
+     * const keyboard = Keyboard.make(['Button'])
+     * const clone = Keyboard.clone(keyboard)
+     * 
+     * console.log(keyboard !== clone)
+     * console.log(keyboard.buttons !== clone.buttons)
+     */
+    static clone(keyboard: Keyboard): Keyboard
 
     /** Returns inline keyboard markup */
     static inline(buttons: Buttons, makeOptions?: MakeOptions, extra?: Record<string, any>): { reply_markup: InlineKeyboardMarkup }

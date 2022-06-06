@@ -1,6 +1,6 @@
 {
-  "name": "@mkikets/telegram-keyboard",
-  "version": "2.2.6",
+  "name": "telegram-keyboard",
+  "version": "2.3.0",
   "description": "Keyboard builder for Telegram Bot",
   "author": "Mykola Kikets mykola.kikets@gmail.com",
   "main": "lib/index.js",

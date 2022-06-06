@@ -1,5 +1,3 @@
-This is a fork. If you looking for official package visit [RealPeha/telegram-keyboard](https://github.com/RealPeha/telegram-keyboard)
-
 # Telegram Keyboard Builder
 Simple and powerful reply and inline keyboard builder for Telegram Bots
 
@@ -20,14 +18,14 @@ const { Keyboard } = require('telegram-keyboard')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-bon.on('text', async ({ reply }) => {
+bot.on('text', async (ctx) => {
   const keyboard = Keyboard.make([
     ['Button 1', 'Button 2'], // First row
     ['Button 3', 'Button 4'], // Second row
   ])
 
-  await reply('Simple built-in keyboard', keyboard.reply())
-  await reply('Simple inline keyboard', keyboard.inline())
+  await ctx.reply('Simple built-in keyboard', keyboard.reply())
+  await ctx.reply('Simple inline keyboard', keyboard.inline())
 })
 ```
 
