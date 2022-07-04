@@ -58,6 +58,12 @@ export interface SwitchToCurrentChatButton extends Button {
     switch_inline_query_current_chat: string
 }
 
+export interface WebAppButton extends Button {
+    web_app: {
+        url: string
+    }
+}
+
 export declare class Key {
     static text(text: number | string, hide?: boolean): TextButton
     static callback(text: number | string, callbackData: string | number, hide?: boolean): CallbackButton
@@ -70,6 +76,7 @@ export declare class Key {
     static login(text: number | string, url: string, options?: Omit<LoginUrl, 'url'>, hide?: boolean): LoginButton
     static switchToChat(text: number | string, switchInlineQuery: string, hide?: boolean): SwitchToChatButton
     static switchToCurrentChat(text: number | string, switchInlineQueryCurrentChat: string, hide?: boolean): SwitchToCurrentChatButton
+    static webApp(text: number | string, url: string, hide?: boolean): SwitchToCurrentChatButton
 }
 
 export type KeyboardButton =
@@ -84,3 +91,4 @@ export type KeyboardButton =
   | LoginButton
   | SwitchToChatButton
   | SwitchToCurrentChatButton
+  | WebAppButton
