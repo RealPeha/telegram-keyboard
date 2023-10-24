@@ -1,9 +1,11 @@
-export type PollType = 'poll' | 'quiz'
+export type PollType = 'regular' | 'quiz' | 'any'
 
 interface Button {
     text: string | number
     hide?: boolean
 }
+
+type Text = number | string
 
 export interface TextButton extends Button {
     type: string
@@ -39,6 +41,49 @@ export interface PollButton extends Button {
     }
 }
 
+export interface RequestUserOptions {
+    request_id: number
+    user_is_bot?: boolean
+    user_is_premium?: boolean
+}
+
+export interface UserButton extends Button {
+    request_user: RequestUserOptions
+}
+
+export interface ChatAdministratorRights {
+    is_anonymous: boolean
+    can_manage_chat: boolean
+    can_delete_messages: boolean
+    can_manage_video_chats: boolean
+    can_restrict_members: boolean
+    can_promote_members: boolean
+    can_change_info: boolean
+    can_invite_users: boolean
+    can_post_messages?: boolean
+    can_edit_messages?: boolean
+    can_pin_messages?: boolean
+    can_post_stories?: boolean
+    can_edit_stories?: boolean
+    can_delete_stories?: boolean
+    can_manage_topics?: boolean
+}
+
+export interface RequestChatOptions {
+    request_id: number
+    chat_is_channel: boolean
+    chat_is_forum?: boolean
+    chat_has_username?: boolean
+    chat_is_created?: boolean
+    user_administrator_rights?: ChatAdministratorRights
+    bot_administrator_rights?: ChatAdministratorRights
+    bot_is_member?: boolean
+}
+
+export interface ChatButton extends Button {
+    request_chat: RequestChatOptions
+}
+
 export interface LoginUrl {
     url: string
     forward_text?: string
@@ -65,18 +110,20 @@ export interface WebAppButton extends Button {
 }
 
 export declare class Key {
-    static text(text: number | string, hide?: boolean): TextButton
-    static callback(text: number | string, callbackData: string | number, hide?: boolean): CallbackButton
-    static url(text: number | string, url: string, hide?: boolean): UrlButton
-    static game(text: number | string, hide?: boolean): GameButton
-    static pay(text: number | string, hide?: boolean): PayButton
-    static contact(text: number | string, hide?: boolean): ContactButton
-    static location(text: number | string, hide?: boolean): LocationButton
-    static poll(text: number | string, type: PollType, hide?: boolean): PollButton
-    static login(text: number | string, url: string, options?: Omit<LoginUrl, 'url'>, hide?: boolean): LoginButton
-    static switchToChat(text: number | string, switchInlineQuery: string, hide?: boolean): SwitchToChatButton
-    static switchToCurrentChat(text: number | string, switchInlineQueryCurrentChat: string, hide?: boolean): SwitchToCurrentChatButton
-    static webApp(text: number | string, url: string, hide?: boolean): SwitchToCurrentChatButton
+    static text(text: Text, hide?: boolean): TextButton
+    static callback(text: Text, callbackData: string | number, hide?: boolean): CallbackButton
+    static url(text: Text, url: string, hide?: boolean): UrlButton
+    static game(text: Text, hide?: boolean): GameButton
+    static pay(text: Text, hide?: boolean): PayButton
+    static contact(text: Text, hide?: boolean): ContactButton
+    static location(text: Text, hide?: boolean): LocationButton
+    static poll(text: Text, type: PollType, hide?: boolean): PollButton
+    static user(text: Text, options: RequestUserOptions, hide?: boolean): UserButton
+    static chat(text: Text, options: RequestChatOptions, hide?: boolean): ChatButton
+    static login(text: Text, url: string, options?: Omit<LoginUrl, 'url'>, hide?: boolean): LoginButton
+    static switchToChat(text: Text, switchInlineQuery: string, hide?: boolean): SwitchToChatButton
+    static switchToCurrentChat(text: Text, switchInlineQueryCurrentChat: string, hide?: boolean): SwitchToCurrentChatButton
+    static webApp(text: Text, url: string, hide?: boolean): SwitchToCurrentChatButton
 }
 
 export type KeyboardButton =
@@ -92,3 +139,5 @@ export type KeyboardButton =
   | SwitchToChatButton
   | SwitchToCurrentChatButton
   | WebAppButton
+  | UserButton
+  | ChatButton
