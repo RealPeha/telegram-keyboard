@@ -36,7 +36,9 @@
     "telegraf-keyboard"
   ],
   "devDependencies": {
-    "ava": "^3.13.0",
-    "typegram": "^3.1.8"
+    "ava": "^3.13.0"
+  },
+  "dependencies": {
+    "typegram": "^5.2.0"
   }
 }

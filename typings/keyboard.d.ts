@@ -1,38 +1,28 @@
+import { ForceReply, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove } from 'typegram';
 import { KeyboardButton } from './key.d'
-import { InlineKeyboardMarkup } from 'typegram/inline'
-import { ReplyKeyboardMarkup, ReplyKeyboardRemove } from 'typegram/callback'
 
-export interface ExtraMarkup {
-    resize_keyboard?: boolean;
-    force_reply?: boolean;
-    selective?: boolean;
-    one_time_keyboard?: boolean;
-    remove_keyboard?: boolean;
-    input_field_placeholder?: string;
-}
+export type ExtraMarkup = Omit<ReplyKeyboardMarkup, 'keyboard'> | ReplyKeyboardRemove | ForceReply
+
+export type ButtonLike = number | string | KeyboardButton
+export type Buttons = ButtonLike[] | ButtonLike[][]
 
 export interface MakeOptions {
-    columns: number;
-    wrap: (
-        row: string[] | number[] | KeyboardButton[],
+    columns?: number;
+    wrap?: (
+        row: ButtonLike[],
         index: number,
         rowIndex: number,
-        button: number | string | KeyboardButton,
+        button: ButtonLike,
     ) => boolean;
-    filter: (
-        button: number | string | KeyboardButton,
+    filter?: (
+        button: ButtonLike,
         index: number,
-        buttons: string[] | number[] | KeyboardButton[],
+        buttons: ButtonLike[],
     ) => boolean;
-    filterAfterBuild: boolean;
-    flat: boolean;
-    pattern: number[];
+    filterAfterBuild?: boolean;
+    flat?: boolean;
+    pattern?: number[];
 }
-
-export type Buttons =
-  | string[] | string[][]
-  | number[] | number[][]
-  | KeyboardButton[] | KeyboardButton[][]
 
 export type MakeFunction = (...args: any[]) => Keyboard | Buttons
 
@@ -67,7 +57,7 @@ export declare class Keyboard {
 
     setOptions(options: ExtraMarkup): this
 
-    setOption(option: keyof ExtraMarkup, value?: boolean | string): this
+    setOption<T extends keyof ExtraMarkup>(option: T, value?: ExtraMarkup[T]): this
 
     /**
      * @description Requests clients to resize the keyboard vertically for optimal

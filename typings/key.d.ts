@@ -1,4 +1,6 @@
-export type PollType = 'regular' | 'quiz' | 'any'
+import { KeyboardButtonRequestChat, KeyboardButtonRequestUser, LoginUrl } from "typegram"
+
+type PollType = 'regular' | 'quiz' | 'any'
 
 interface Button {
     text: string | number
@@ -41,54 +43,12 @@ export interface PollButton extends Button {
     }
 }
 
-export interface RequestUserOptions {
-    request_id: number
-    user_is_bot?: boolean
-    user_is_premium?: boolean
-}
-
 export interface UserButton extends Button {
-    request_user: RequestUserOptions
-}
-
-export interface ChatAdministratorRights {
-    is_anonymous: boolean
-    can_manage_chat: boolean
-    can_delete_messages: boolean
-    can_manage_video_chats: boolean
-    can_restrict_members: boolean
-    can_promote_members: boolean
-    can_change_info: boolean
-    can_invite_users: boolean
-    can_post_messages?: boolean
-    can_edit_messages?: boolean
-    can_pin_messages?: boolean
-    can_post_stories?: boolean
-    can_edit_stories?: boolean
-    can_delete_stories?: boolean
-    can_manage_topics?: boolean
-}
-
-export interface RequestChatOptions {
-    request_id: number
-    chat_is_channel: boolean
-    chat_is_forum?: boolean
-    chat_has_username?: boolean
-    chat_is_created?: boolean
-    user_administrator_rights?: ChatAdministratorRights
-    bot_administrator_rights?: ChatAdministratorRights
-    bot_is_member?: boolean
+    request_user: KeyboardButtonRequestUser
 }
 
 export interface ChatButton extends Button {
-    request_chat: RequestChatOptions
-}
-
-export interface LoginUrl {
-    url: string
-    forward_text?: string
-    bot_username?: string
-    request_write_access?: boolean
+    request_chat: KeyboardButtonRequestChat
 }
 
 export interface LoginButton extends Button {
@@ -118,8 +78,8 @@ export declare class Key {
     static contact(text: Text, hide?: boolean): ContactButton
     static location(text: Text, hide?: boolean): LocationButton
     static poll(text: Text, type: PollType, hide?: boolean): PollButton
-    static user(text: Text, options: RequestUserOptions, hide?: boolean): UserButton
-    static chat(text: Text, options: RequestChatOptions, hide?: boolean): ChatButton
+    static user(text: Text, options: KeyboardButtonRequestUser, hide?: boolean): UserButton
+    static chat(text: Text, options: KeyboardButtonRequestChat, hide?: boolean): ChatButton
     static login(text: Text, url: string, options?: Omit<LoginUrl, 'url'>, hide?: boolean): LoginButton
     static switchToChat(text: Text, switchInlineQuery: string, hide?: boolean): SwitchToChatButton
     static switchToCurrentChat(text: Text, switchInlineQueryCurrentChat: string, hide?: boolean): SwitchToCurrentChatButton
