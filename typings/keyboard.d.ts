@@ -1,7 +1,7 @@
 import { ForceReply, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove } from 'typegram';
 import { KeyboardButton } from './key.d'
 
-export type ExtraMarkup = Omit<ReplyKeyboardMarkup, 'keyboard'> | ReplyKeyboardRemove | ForceReply
+export type ExtraMarkup = Omit<ReplyKeyboardMarkup, 'keyboard'> & ReplyKeyboardRemove & ForceReply
 
 export type ButtonLike = number | string | KeyboardButton
 export type Buttons = ButtonLike[] | ButtonLike[][]
