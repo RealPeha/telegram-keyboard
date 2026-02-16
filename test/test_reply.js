@@ -99,7 +99,7 @@ test('make keyboard with pattern option', t => {
 })
 
 test('make keyboard with hide buttons', t => {
-    const markup = Keyboard.make([Key.text(1, true), 2, 3]).reply().reply_markup
+    const markup = Keyboard.make([Key.text(1, { hide: true }), 2, 3]).reply().reply_markup
 
     t.deepEqual(markup, {
         resize_keyboard: true,
@@ -110,7 +110,7 @@ test('make keyboard with hide buttons', t => {
 })
 
 test('make keyboard with hide buttons and columns', t => {
-    const markup = Keyboard.make([Key.text(1, true), 2, 3], {
+    const markup = Keyboard.make([Key.text(1, { hide: true }), 2, 3], {
         columns: 2,
     }).reply().reply_markup
 
@@ -123,7 +123,7 @@ test('make keyboard with hide buttons and columns', t => {
 })
 
 test('make keyboard with hide buttons and columns and filterAfterBuild option', t => {
-    const markup = Keyboard.make([Key.text(1, true), 2, 3], {
+    const markup = Keyboard.make([Key.text(1, { hide: true }), 2, 3], {
         columns: 2,
         filterAfterBuild: true,
     }).reply().reply_markup
@@ -166,7 +166,7 @@ test('make keyboard with flat and columns option', t => {
 })
 
 test('make keyboard with custom filter function', t => {
-    const markup = Keyboard.make([1, 2, Key.text(3, true), Key.text(4, true)], {
+    const markup = Keyboard.make([1, 2, Key.text(3, { hide: false }), Key.text(4, { hide: true })], {
         filter: button => (button.text || button) % 2,
     }).reply().reply_markup
 

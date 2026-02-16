@@ -2,9 +2,13 @@ import { KeyboardButtonRequestChat, KeyboardButtonRequestUser, LoginUrl } from "
 
 type PollType = 'regular' | 'quiz' | 'any'
 
+type StyleType = 'danger' | 'success' | 'primary'
+
 interface Button {
     text: string | number
     hide?: boolean
+    icon_custom_emoji_id?: string
+    style?: StyleType
 }
 
 type Text = number | string
@@ -70,20 +74,20 @@ export interface WebAppButton extends Button {
 }
 
 export declare class Key {
-    static text(text: Text, hide?: boolean): TextButton
-    static callback(text: Text, callbackData: string | number, hide?: boolean): CallbackButton
-    static url(text: Text, url: string, hide?: boolean): UrlButton
-    static game(text: Text, hide?: boolean): GameButton
-    static pay(text: Text, hide?: boolean): PayButton
-    static contact(text: Text, hide?: boolean): ContactButton
-    static location(text: Text, hide?: boolean): LocationButton
-    static poll(text: Text, type: PollType, hide?: boolean): PollButton
-    static user(text: Text, options: KeyboardButtonRequestUser, hide?: boolean): UserButton
-    static chat(text: Text, options: KeyboardButtonRequestChat, hide?: boolean): ChatButton
-    static login(text: Text, url: string, options?: Omit<LoginUrl, 'url'>, hide?: boolean): LoginButton
-    static switchToChat(text: Text, switchInlineQuery: string, hide?: boolean): SwitchToChatButton
-    static switchToCurrentChat(text: Text, switchInlineQueryCurrentChat: string, hide?: boolean): SwitchToCurrentChatButton
-    static webApp(text: Text, url: string, hide?: boolean): SwitchToCurrentChatButton
+    static text(text: Text, options?: Omit<Button, 'text'>): TextButton
+    static callback(text: Text, callbackData: string | number, options?: Omit<Button, 'text'>): CallbackButton
+    static url(text: Text, url: string, options?: Omit<Button, 'text'>): UrlButton
+    static game(text: Text, options?: Omit<Button, 'text'>): GameButton
+    static pay(text: Text, options?: Omit<Button, 'text'>): PayButton
+    static contact(text: Text, options?: Omit<Button, 'text'>): ContactButton
+    static location(text: Text, options?: Omit<Button, 'text'>): LocationButton
+    static poll(text: Text, type: PollType,options?: Omit<Button, 'text'>): PollButton
+    static user(text: Text, options: KeyboardButtonRequestUser, keyOptions?: Omit<Button, 'text'>): UserButton
+    static chat(text: Text, options: KeyboardButtonRequestChat, keyOptions?: Omit<Button, 'text'>): ChatButton
+    static login(text: Text, url: string, options?: Omit<LoginUrl, 'url'>, keyOptions?: Omit<Button, 'text'>): LoginButton
+    static switchToChat(text: Text, switchInlineQuery: string, options?: Omit<Button, 'text'>): SwitchToChatButton
+    static switchToCurrentChat(text: Text, switchInlineQueryCurrentChat: string, options?: Omit<Button, 'text'>): SwitchToCurrentChatButton
+    static webApp(text: Text, url: string, options?: Omit<Button, 'text'>): SwitchToCurrentChatButton
 }
 
 export type KeyboardButton =
