@@ -67,7 +67,7 @@ test('make keyboard with url button', t => {
 test('make keyboard with hide button', t => {
     const markup = Keyboard.make([
         Key.callback('One', 'one'),
-        Key.callback('Two', 'two', true),
+        Key.callback('Two', 'two', { hide: true }),
     ]).inline().reply_markup
 
     t.deepEqual(markup, {

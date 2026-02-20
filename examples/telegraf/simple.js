@@ -24,14 +24,14 @@ bot.hears('Help', ({ reply }) => {
     return reply('Help', Keyboard.make(['Back']).reply())
 })
 
-bot.hears('Inline Menu', ({ reply }) => {
+bot.hears('Inline Menu', (ctx) => {
     const keyboard = Keyboard.make([
-        [Key.callback('Line 1', 'hello')],
-        [Key.callback('Line 2', 'my')],
-        [Key.callback('Line 3', 'friend')],
+        [Key.callback('Line 1', 'hello', { style: 'danger' })],
+        [Key.callback('Line 2', 'my', { style: 'success' })],
+        [Key.callback('Line 3', 'friend', { style: 'primary', icon_custom_emoji_id: '5773939765413941528' })],
     ]).inline()
 
-    return reply('Inline Keyboard', keyboard)
+    return ctx.reply('Inline Keyboard', keyboard)
 })
 
 bot.on('callback_query', (ctx) => {
