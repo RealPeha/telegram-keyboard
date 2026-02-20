@@ -13,7 +13,7 @@ or yarn
 ## Example of use in Telegraf
 
 ```javascript
-const Telegraf = require('telegraf')
+const { Telegraf } = require('telegraf')
 const { Keyboard } = require('telegram-keyboard')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -377,5 +377,24 @@ const keyboard = Keyboard.make((page) => {
 console.log(keyboard.construct(0).reply())
 console.log(keyboard.construct(1).reply())
 ```
+
+## Color buttons and custom emoji (Telegram API 9.4+)
+
+You can now set color and add custom emoji to buttons if the bot owner has telegram premium subscription.
+
+#### Example
+```javascript
+const { Keyboard, Key } = require('telegram-keyboard')
+
+const keyboard = Keyboard.make([
+    Key.callback('Green', 'green', { style: 'success' }),
+    Key.callback('Red', 'red', { style: 'danger' }),
+    Key.callback('Blue', 'blue', { style: 'primary' }),
+    Key.callback('Emoji', 'emoji', { icon_custom_emoji_id: '1234567890123456789' }),
+]).inline()
+
+console.log(keyboard)
+```
+
 
 More examples you may find in [examples](https://github.com/RealPeha/telegram-keyboard/tree/master/examples)

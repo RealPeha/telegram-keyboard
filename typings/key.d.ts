@@ -81,10 +81,10 @@ export declare class Key {
     static pay(text: Text, options?: Omit<Button, 'text'>): PayButton
     static contact(text: Text, options?: Omit<Button, 'text'>): ContactButton
     static location(text: Text, options?: Omit<Button, 'text'>): LocationButton
-    static poll(text: Text, type: PollType,options?: Omit<Button, 'text'>): PollButton
-    static user(text: Text, options: KeyboardButtonRequestUser, keyOptions?: Omit<Button, 'text'>): UserButton
-    static chat(text: Text, options: KeyboardButtonRequestChat, keyOptions?: Omit<Button, 'text'>): ChatButton
-    static login(text: Text, url: string, options?: Omit<LoginUrl, 'url'>, keyOptions?: Omit<Button, 'text'>): LoginButton
+    static poll(text: Text, type: PollType, options?: Omit<Button, 'text'>): PollButton
+    static user(text: Text, options: KeyboardButtonRequestUser & Omit<Button, 'text'>): UserButton
+    static chat(text: Text, options: KeyboardButtonRequestChat & Omit<Button, 'text'>): ChatButton
+    static login(text: Text, url: string, options?: Omit<LoginUrl, 'url'> & Omit<Button, 'text'>): LoginButton
     static switchToChat(text: Text, switchInlineQuery: string, options?: Omit<Button, 'text'>): SwitchToChatButton
     static switchToCurrentChat(text: Text, switchInlineQueryCurrentChat: string, options?: Omit<Button, 'text'>): SwitchToCurrentChatButton
     static webApp(text: Text, url: string, options?: Omit<Button, 'text'>): SwitchToCurrentChatButton

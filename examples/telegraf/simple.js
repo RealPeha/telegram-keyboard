@@ -38,9 +38,4 @@ bot.on('callback_query', (ctx) => {
     return ctx.answerCbQuery(ctx.callbackQuery.data)
 })
 
-bot.hears(/.+/, (ctx) => {
-    console.log('Message with dots')
-    console.log(ctx.message)
-})
-
 bot.launch()
